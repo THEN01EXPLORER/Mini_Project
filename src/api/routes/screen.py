@@ -86,7 +86,6 @@ async def screen_resume(
             max_length=10000,
         )
     ],
-    current_user: User = Depends(get_current_user),
 ) -> ScreeningResponse:
     """
     Screen a resume against a job description.

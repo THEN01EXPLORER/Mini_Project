@@ -55,7 +55,6 @@ class BatchRankingResult(BaseModel):
 async def rank_resumes(
     files: Annotated[list[UploadFile], File(description="Multiple resume PDFs")],
     job_description: Annotated[str, Form(description="Job description to match against")],
-    current_user: User = Depends(get_current_user),
 ) -> APIResponse:
     """
     Rank multiple resumes against a job description.
