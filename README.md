@@ -1,5 +1,13 @@
-# Resume Screener AI | Full Stack Platform
+---
+title: Resume Screener API
+emoji: 🚀
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+pinned: false
+---
 
+# Resume Screener AI | Full Stack Platform
 A production-grade Resume Screening & Batch Ranking platform. It uses AI to parse resumes, perform semantic matching against job descriptions, and detect bias.
 
 ## Features
