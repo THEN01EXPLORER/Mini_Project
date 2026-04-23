@@ -1,0 +1,40 @@
+# Ruff Configuration - Opinionated linting for production code
+# Why ruff? It's 10-100x faster than flake8+isort combined
+
+line-length = 88  # Black-compatible
+target-version = "py310"
+
+[lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear - catches common gotchas
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade - modernize syntax
+    "ARG",    # flake8-unused-arguments
+    "SIM",    # flake8-simplify
+]
+
+ignore = [
+    "E501",   # Line too long - let formatter handle it
+    "B008",   # Do not perform function calls in argument defaults
+              # (FastAPI's Depends() requires this pattern)
+    "B904",   # Within an except clause, raise exceptions with `raise ... from err`
+              # (Sometimes we want to hide internal errors from users)
+]
+
+[lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Unused imports in __init__ are intentional re-exports
+
+[lint.isort]
+known-first-party = ["src"]
+force-single-line = false
+combine-as-imports = true
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

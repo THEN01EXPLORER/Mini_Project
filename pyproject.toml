@@ -1,0 +1,56 @@
+[project]
+name = "resume-screener"
+version = "0.1.0"
+description = "Production-grade Resume Screening & Ranking API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Sant Kumar Maurya", email = "sant.maurya@example.com" }]
+
+dependencies = [
+    # Core Framework
+    "fastapi[standard]>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    
+    # Logging & Resilience - NOT using stdlib, because I've learned the hard way
+    "loguru>=0.7.2",
+    "tenacity>=8.2.3",
+    
+    # Config Management - Type-safe .env loading
+    "pydantic-settings>=2.1.0",
+    
+    # Rate Limiting - Prevent API abuse from scrapers
+    "slowapi>=0.1.9",
+    
+    # PDF Processing - pdfplumber handles multi-column resumes better than PyPDF2
+    "pdfplumber>=0.10.3",
+    
+    # Vector DB - Local persistence, no Docker overhead
+    "chromadb>=0.4.22",
+    
+    # Embeddings - MiniLM is lightweight enough for laptop inference
+    "sentence-transformers>=2.3.1",
+    
+    # LLM - Gemini for structured extraction
+    "google-generativeai>=0.3.2",
+    
+    # LangChain - Only using text splitters, not the full bloat
+    "langchain-text-splitters>=0.0.1",
+    
+    # Utilities
+    "python-multipart>=0.0.6",  # Required for file uploads
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.14",
+    "pytest>=7.4.4",
+    "httpx>=0.26.0",  # For async test client
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
