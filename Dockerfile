@@ -1,5 +1,5 @@
 # Use official Python image
-FROM python:3.11-slim
+FROM python:3.11
 
 # Set up a new user named "user" with user ID 1000 (Required by Hugging Face)
 RUN useradd -m -u 1000 user
