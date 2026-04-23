@@ -21,10 +21,8 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-zinc-950 text-zinc-50 antialiased`}>
         <Providers>
-          <AuthGuard>
-            <Navigation />
-            {children}
-          </AuthGuard>
+          <Navigation />
+          {children}
         </Providers>
       </body>
     </html>

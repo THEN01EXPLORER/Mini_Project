@@ -2,23 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuth } from '@/components/AuthGuard';
-
-const PUBLIC_PATHS = ['/login', '/register'];
 
 export function Navigation() {
     const pathname = usePathname();
-    const { user, logout } = useAuth();
-
-    // Don't show nav on login/register pages
-    if (PUBLIC_PATHS.includes(pathname)) {
-        return null;
-    }
-
-    const handleLogout = () => {
-        logout();
-        window.location.href = '/login';
-    };
 
     return (
         <nav className="border-b border-white/5 bg-white/[0.02] backdrop-blur-xl">
@@ -64,19 +50,6 @@ export function Navigation() {
                             <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
                             <span className="text-zinc-400">Online</span>
                         </div>
-                    </div>
-
-                    {/* User menu */}
-                    <div className="flex items-center gap-3 pl-4 border-l border-white/10">
-                        <span className="text-xs text-zinc-500 hidden sm:inline-block">
-                            {user?.email || 'Loading...'}
-                        </span>
-                        <button
-                            onClick={handleLogout}
-                            className="text-sm font-medium text-zinc-400 hover:text-red-400 transition-colors"
-                        >
-                            Logout
-                        </button>
                     </div>
                 </div>
             </div>
